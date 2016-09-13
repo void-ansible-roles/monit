@@ -1,3 +1,3 @@
 ---
 - name: monit
-  command: sv restart monit
+  command: monit -c /etc/monit/monitrc reload
