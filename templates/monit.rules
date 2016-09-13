@@ -1,0 +1,3 @@
+*filter
+-A INPUT -p tcp -d {{ monit_bind | default(ansible_default_ipv4.address) }} --dport {{ monit_port}} -j ACCEPT
+COMMIT

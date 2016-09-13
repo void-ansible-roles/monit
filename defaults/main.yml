@@ -1,0 +1,9 @@
+monit_readonly_enabled: true
+monit_readonly_user: monit
+monit_readonly_pass: monit
+
+monit_admin_user: admin
+monit_admin_pass: monit
+
+monit_port: 2812
+# monit_bind: 127.0.0.1

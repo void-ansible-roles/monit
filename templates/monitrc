@@ -1,0 +1,20 @@
+set daemon  30
+set logfile syslog
+
+set httpd port {{ monit_port }} and
+    use address {{ monit_bind | default(ansible_default_ipv4.address) }}
+    allow {{ monit_bind | default(ansible_default_ipv4.address) }}
+    {% if monit_readonly_enabled %}
+    allow {{ monit_readonly_user }}:{{ monit_readonly_pass }} read-only
+    {% endif %}
+    allow {{ monit_admin_user }}:{{ monit_admin_pass }}
+
+# Setup some default checks for system
+check system {{ ansible_hostname }}
+    if loadavg (5min) > 3 for 4 cycles then alert
+    if loadavg (15min) > 1 for 4 cycles then alert
+    if memory usage > 80% for 4 cycles then alert
+    if swap usage > 20% for 4 cycles then alert
+    if cpu usage (user) > 80% for 4 cycles then alert
+    if cpu usage (system) > 20% for 4 cycles then alert
+    if cpu usage (wait) > 20% for 4 cycles then alert
