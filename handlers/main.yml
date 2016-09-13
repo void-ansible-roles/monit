@@ -1,0 +1,3 @@
+---
+- name: monit
+  command: sv restart monit
