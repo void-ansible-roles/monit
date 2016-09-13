@@ -2,6 +2,7 @@ monit_readonly_enabled: true
 monit_readonly_user: monit
 monit_readonly_pass: monit
 
+monit_admin_enabled: false
 monit_admin_user: admin
 monit_admin_pass: monit
 
