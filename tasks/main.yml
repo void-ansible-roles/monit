@@ -2,6 +2,9 @@
 - name: Install monit
   xbps: pkg=monit state=present
 
+- name: Create monit conf.d
+  file: path=/etc/monit/conf.d state=directory owner=root group=root mode=0755
+
 - name: Configure monit
   template: src=monitrc dest=/etc/monit/monitrc owner=root group=root mode=0600
   notify:

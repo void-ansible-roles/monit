@@ -19,3 +19,5 @@ check system {{ ansible_hostname }}
     if cpu usage (user) > 80% for 4 cycles then alert
     if cpu usage (system) > 20% for 4 cycles then alert
     if cpu usage (wait) > 20% for 4 cycles then alert
+
+include /etc/monit/conf.d/*
