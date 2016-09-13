@@ -3,7 +3,6 @@ set logfile syslog
 
 set httpd port {{ monit_port }} and
     use address {{ monit_bind | default(ansible_default_ipv4.address) }}
-    allow {{ monit_bind | default(ansible_default_ipv4.address) }}
     {% if monit_readonly_enabled %}
     allow {{ monit_readonly_user }}:{{ monit_readonly_pass }} read-only
     {% endif %}

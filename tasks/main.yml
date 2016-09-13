@@ -12,9 +12,9 @@
   copy: src=run dest=/etc/sv/monit/run owner=root group=root mode=0755
 
 - name: Enable monit service
-  file src=/etc/sv/monit dest=/var/service/monit state=link
+  file: src=/etc/sv/monit dest=/var/service/monit state=link
 
 - name: Install firewall rules
-  copy: src=monit.rules dest=/etc/iptables.d/monit.rules owner=root group=root mode=0640
+  template: src=monit.rules dest=/etc/iptables.d/monit.rules owner=root group=root mode=0640
   notify:
     - iptables
