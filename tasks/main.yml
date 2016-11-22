@@ -1,25 +1,55 @@
 ---
 - name: Install monit
-  xbps: pkg=monit state=present
+  xbps:
+    pkg: monit
+    state: present
 
 - name: Create monit conf.d
-  file: path=/etc/monit/conf.d state=directory owner=root group=root mode=0755
+  file:
+    path: /etc/monit/conf.d
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
 
 - name: Configure monit
-  template: src=monitrc dest=/etc/monit/monitrc owner=root group=root mode=0600
+  template:
+    src: monitrc
+    dest: /etc/monit/monitrc
+    owner: root
+    group: root
+    mode: 0600
   notify:
     - monit
 
 - name: Configure monit service (1/2)
-  file: path=/etc/sv/monit state=directory owner=root group=root mode=0755
+  file:
+    path: /etc/sv/monit
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
 
 - name: Configure monit service (2/2)
-  copy: src=run dest=/etc/sv/monit/run owner=root group=root mode=0755
+  copy:
+    src: run
+    dest: /etc/sv/monit/run
+    owner: root
+    group: root
+    mode: 0755
 
 - name: Enable monit service
-  file: src=/etc/sv/monit dest=/var/service/monit state=link
+  file:
+    src: /etc/sv/monit
+    dest: /var/service/monit
+    state: link
 
 - name: Install firewall rules
-  template: src=monit.rules dest=/etc/iptables.d/monit.rules owner=root group=root mode=0640
+  template:
+    src: monit.rules
+    dest: /etc/iptables.d/monit.rules
+    owner: root
+    group: root
+    mode: 0640
   notify:
     - iptables
